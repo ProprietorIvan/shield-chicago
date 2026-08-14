@@ -1,63 +1,195 @@
-import { JobTicket } from "@/components/job-ticket";
-import { FIRM } from "@/lib/firm";
+import { SERVICE_PHOTO, ServicePageFrame } from "@/components/service-page-frame";
 import type { Place } from "@/lib/territory";
-import { MapPin } from "lucide-react";
+import {
+  Building,
+  CheckCircle2,
+  Clock,
+  Droplets,
+  Home,
+  Shield,
+} from "lucide-react";
+import Image from "next/image";
+
+const features = [
+  {
+    icon: Clock,
+    title: "60-Minute Response",
+    description: "Fast emergency response across this neighborhood and surrounding Chicago",
+  },
+  {
+    icon: Shield,
+    title: "Experienced Team",
+    description: "Trusted water damage restoration experts",
+  },
+  {
+    icon: Droplets,
+    title: "Advanced Equipment",
+    description: "Professional-grade water extraction & drying",
+  },
+  {
+    icon: Home,
+    title: "Local Building Stock",
+    description: "Greystones, two-flats, lofts, and high-rises — we already know the block",
+  },
+];
+
+const process = [
+  "Call and we dispatch the nearest Chicago crew",
+  "Extract standing water and set containment",
+  "Dry and meter until the structure reads dry",
+  "Rebuild, document, and hand you the file",
+];
 
 export function PlaceLander({ place }: { place: Place }) {
   return (
-    <div>
-      <section className="bg-void px-4 py-16 text-bone">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copper">
-              {place.area} · Dedicated lander
+    <ServicePageFrame
+      breadcrumbs={[
+        { label: "Coverage", url: "/coverage" },
+        { label: place.name, url: `/coverage/${place.slug}` },
+      ]}
+      pill={
+        place.hub === "dispatch"
+          ? "Center Dispatch · 1200 W Carroll Ave"
+          : `24/7 Emergency · ${place.name}`
+      }
+      heroLead={place.name}
+      heroAccent={place.hub === "dispatch" ? "Carroll Avenue Shop" : "Water Damage Restoration"}
+      lede={place.pitch}
+      cta="Call Now - Available 24/7"
+      image={SERVICE_PHOTO.extraction}
+      imageAlt={`Water damage restoration in ${place.name}`}
+      landingPage={`coverage-${place.slug}`}
+      ctaTitle={`Expert Water Damage Restoration in ${place.name}`}
+      ctaCopy="Professional restoration with guaranteed results"
+    >
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-ink">Professional Restoration Services</h2>
+            <p className="text-lg text-ink-soft">
+              Fast extraction, controlled drying, and rebuilds
+              {place.hub === "dispatch"
+                ? " from the Carroll Avenue shop across Chicago"
+                : ` in ${place.name} and ${place.nearby.join(", ")}`}
+              .
             </p>
-            <h1 className="mt-3 font-display text-4xl md:text-5xl">
-              {place.name} water damage restoration
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-bone/75">{place.pitch}</p>
-            <p className="mt-6 flex items-start gap-2 text-sm text-bone/70">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-copper" aria-hidden />
-              <span>
-                Dispatched from {FIRM.address}
-                <br />
-                <a href={FIRM.addressMaps} className="text-copper underline" target="_blank" rel="noreferrer">
-                  Map the shop
-                </a>
-              </span>
-            </p>
-            <a
-              href={FIRM.phoneTel}
-              className="mt-8 inline-block rounded-full bg-copper px-6 py-3 text-sm font-semibold text-bone"
-            >
-              Call {FIRM.phoneDisplay}
-            </a>
           </div>
-          <div className="bg-bone p-6 text-void">
-            <p className="font-display text-xl">Get a crew to {place.name}</p>
-            <p className="mt-1 mb-4 text-sm text-quiet">60-minute target inside the city.</p>
-            <JobTicket landingPage={`coverage-${place.slug}`} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <div key={feature.title} className="page-card p-6">
+                  <div className="text-accent mb-4">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-ink-soft">{feature.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="font-display text-3xl">What fails on this block</h2>
-        <ul className="mt-6 grid gap-3 md:grid-cols-3">
-          {place.hazards.map((hazard) => (
-            <li key={hazard} className="border border-void/10 p-4 text-sm">
-              {hazard}
-            </li>
-          ))}
-        </ul>
-        <h2 className="mt-12 font-display text-2xl">Also driving</h2>
-        <ul className="mt-4 flex flex-wrap gap-2 text-sm">
-          {place.nearby.map((name) => (
-            <li key={name} className="border border-void/10 px-3 py-1">
-              {name}
-            </li>
-          ))}
-        </ul>
+
+      <section className="py-20 bg-[#f5f5f5]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-ink">How this job runs</h2>
+            <p className="text-lg text-ink-soft">Our process from first extraction through finish</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {process.map((step, index) => (
+              <div
+                key={step}
+                className="relative bg-white p-6 rounded-[var(--radius)] hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="text-6xl font-bold text-accent/10 absolute -top-4 right-4">
+                  0{index + 1}
+                </div>
+                <h3 className="text-xl font-semibold mb-2 relative z-10">Step 0{index + 1}</h3>
+                <p className="text-ink-soft relative z-10">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
-    </div>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-ink">
+                {place.area}&apos;s trusted water damage experts
+              </h2>
+              <p className="text-lg text-ink-soft mb-6 leading-relaxed">{place.pitch}</p>
+              <ul className="space-y-4">
+                {place.hazards.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span className="text-ink-soft font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative h-[500px]">
+              <Image
+                src={SERVICE_PHOTO.drying}
+                alt={`Structural drying in ${place.name}`}
+                fill
+                className="object-cover rounded-[var(--radius)]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-[#f5f5f5]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-ink">Our Services</h2>
+            <p className="text-lg text-ink-soft">
+              {place.hub === "dispatch"
+                ? "Water damage solutions for homes and businesses dispatched from Carroll Avenue"
+                : `Water damage solutions for homes and businesses in ${place.name}`}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-[var(--radius)] hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center gap-4 mb-4">
+                <Home className="w-8 h-8 text-accent" />
+                <h3 className="text-2xl font-bold text-ink">Residential</h3>
+              </div>
+              <ul className="space-y-3">
+                {place.hazards.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span className="text-ink-soft">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white p-8 rounded-[var(--radius)] hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center gap-4 mb-4">
+                <Building className="w-8 h-8 text-accent" />
+                <h3 className="text-2xl font-bold text-ink">Commercial</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "Retail & storefronts",
+                  "Office & professional spaces",
+                  "Restaurants & hospitality",
+                  "Mixed-use buildings",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span className="text-ink-soft">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ServicePageFrame>
   );
 }

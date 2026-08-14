@@ -1,44 +1,44 @@
-import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
-import { Colophon } from "@/components/colophon";
-import { Masthead } from "@/components/masthead";
+import type { Metadata, Viewport } from "next";
+import { Outfit } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
 import { FIRM } from "@/lib/firm";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const outfit = Outfit({
   subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(FIRM.siteUrl),
   title: {
-    default: FIRM.legal,
-    template: `%s · ${FIRM.name}`,
+    default: "Shield Water Damage Restoration and Repairs | 24/7 Emergency | Chicago",
+    template: `%s · Shield Chicago`,
   },
   description: FIRM.description,
   openGraph: {
-    title: FIRM.legal,
+    title: "Shield Water Damage Restoration and Repairs | 24/7 | Chicago",
     description: FIRM.tagline,
-    images: [{ url: "/og.png", alt: `${FIRM.name} water damage restoration` }],
+    images: [{ url: "/photos/homepage/shield-emergency-water-damage-extraction.jpg" }],
     locale: "en_US",
     type: "website",
+    siteName: "Shield Water Damage Restoration and Repairs",
   },
+  icons: { icon: "/favicon.ico" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#8d0d0c",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} ${fraunces.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-bone text-void">
-        <Masthead />
-        <main className="flex-1">{children}</main>
-        <Colophon />
+    <html lang="en" className={outfit.className}>
+      <body>
+        <SiteNav />
+        {children}
+        <SiteFooter />
       </body>
     </html>
   );

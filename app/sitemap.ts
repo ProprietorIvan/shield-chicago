@@ -6,7 +6,18 @@ import { TRADES } from "@/lib/trades";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = FIRM.siteUrl;
-  const staticPaths = ["", "/work", "/coverage", "/advice", "/questions", "/firm", "/dispatch", "/rates", "/emergency"];
+  const staticPaths = [
+    "",
+    "/work",
+    "/coverage",
+    "/advice",
+    "/questions",
+    "/firm",
+    "/dispatch",
+    "/emergency",
+    "/terms",
+    "/privacy",
+  ];
   return [
     ...staticPaths.map((path) => ({ url: `${base}${path}` })),
     ...TRADES.map((trade) => ({ url: `${base}/work/${trade.slug}` })),

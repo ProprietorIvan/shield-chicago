@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { Star } from "lucide-react";
 import { FIRM } from "@/lib/firm";
 
 const POSTER = "/media/chicago-dispatch-poster.png";
@@ -99,7 +100,7 @@ export function HeroStage() {
   }, []);
 
   return (
-    <section className="hero-stage" id="chicago-water-emergency">
+    <section className="hero-section" id="emergency-water-damage-service">
       <Image
         className="hero-poster"
         src={POSTER}
@@ -121,22 +122,27 @@ export function HeroStage() {
         poster={POSTER}
         aria-hidden="true"
       />
-      <div className="hero-copy hero-rise">
-        <p className="hero-kicker">Chicago · flood-911.com</p>
+      <div className="hero-copy hero-fade-in">
         <h1>
           Chicago water damage, <em>handled.</em>
         </h1>
-        <p className="hero-lede">
-          24/7 extraction and dry-out from the Carroll Avenue shop. Combined sewers, burst stacks,
-          two-flats, and Loop floors.
-        </p>
         <div className="hero-actions">
-          <a href={FIRM.phoneTel} className="rounded-full bg-copper px-6 py-3 text-sm font-semibold text-bone">
+          <a href={FIRM.phoneTel} className="button button-primary">
             Call {FIRM.phoneDisplay}
           </a>
-          <Link href="/emergency" className="hero-text-link">
-            Emergency lander <span aria-hidden="true">→</span>
+          <Link href="/emergency" className="text-link">
+            View Services <span aria-hidden="true">→</span>
           </Link>
+        </div>
+        <div className="hero-trust">
+          <div className="hero-trust-rating">
+            <span>4.9/5 Rating</span>
+            <div className="hero-trust-stars" aria-hidden="true">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Star key={i} className="w-5 h-5 fill-[#FFD700] text-[#FFD700]" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

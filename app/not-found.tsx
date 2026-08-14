@@ -1,13 +1,27 @@
+import { SERVICE_PHOTO, ServicePageFrame } from "@/components/service-page-frame";
+import { FIRM } from "@/lib/firm";
 import Link from "next/link";
 
 export default function Missing() {
   return (
-    <section className="mx-auto max-w-xl px-4 py-24 text-center">
-      <h1 className="font-display text-4xl">That page is dry</h1>
-      <p className="mt-3 text-sm text-quiet">Nothing here. Back to the front.</p>
-      <Link href="/" className="mt-8 inline-block rounded-full bg-void px-5 py-3 text-sm font-semibold text-bone">
-        Shield Chicago home
-      </Link>
-    </section>
+    <ServicePageFrame
+      breadcrumbs={[{ label: "Not found", url: "/" }]}
+      pill="404"
+      heroLead="That page"
+      heroAccent="is dry"
+      lede="Nothing here. Back to the front — or call dispatch if water is still moving."
+      cta={`Call ${FIRM.phoneDisplay}`}
+      image={SERVICE_PHOTO.extraction}
+      imageAlt="Shield Chicago water damage restoration"
+      landingPage="not-found"
+    >
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <Link href="/" className="text-link">
+            Shield Chicago home →
+          </Link>
+        </div>
+      </section>
+    </ServicePageFrame>
   );
 }

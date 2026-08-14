@@ -8,23 +8,27 @@ function curvePath(a: Pt, b: Pt, bend: number): string {
   return `M${a[0]},${a[1]} Q${mx},${my} ${b[0]},${b[1]}`;
 }
 
+const center = FLEET_HUBS[0];
+const loop = FLEET_HUBS[1];
+const lincoln = FLEET_HUBS[2];
+const wicker = FLEET_HUBS[3];
+const hyde = FLEET_HUBS[4];
+
 const ROUTES: { path: string; dur: string; delay: string; r: number }[] = [
-  { path: curvePath(FLEET_HUBS[0].pos, FLEET_HUBS[1].pos, 18), dur: "12s", delay: "0s", r: 5 },
-  { path: curvePath(FLEET_HUBS[1].pos, FLEET_HUBS[2].pos, -22), dur: "11s", delay: "1.2s", r: 4.5 },
-  { path: curvePath(FLEET_HUBS[2].pos, FLEET_HUBS[3].pos, 16), dur: "10s", delay: "0.6s", r: 4.5 },
-  { path: curvePath(FLEET_HUBS[0].pos, FLEET_HUBS[4].pos, 28), dur: "14s", delay: "1.8s", r: 5 },
-  { path: curvePath(FLEET_HUBS[4].pos, FLEET_HUBS[5].pos, -20), dur: "13s", delay: "0.4s", r: 4.5 },
-  { path: curvePath(FLEET_HUBS[0].pos, FLEET_HUBS[6].pos, 36), dur: "16s", delay: "2.2s", r: 4 },
-  { path: curvePath(FLEET_HUBS[7].pos, FLEET_HUBS[0].pos, -24), dur: "12s", delay: "3s", r: 4.5 },
-  { path: curvePath(FLEET_HUBS[5].pos, FLEET_HUBS[1].pos, 30), dur: "15s", delay: "2.6s", r: 4 },
+  { path: curvePath(center.pos, loop.pos, 12), dur: "10s", delay: "0s", r: 5 },
+  { path: curvePath(center.pos, lincoln.pos, -18), dur: "12s", delay: "0.8s", r: 4.5 },
+  { path: curvePath(lincoln.pos, wicker.pos, 14), dur: "11s", delay: "1.4s", r: 4.5 },
+  { path: curvePath(center.pos, wicker.pos, 22), dur: "13s", delay: "0.4s", r: 4.5 },
+  { path: curvePath(center.pos, hyde.pos, 28), dur: "16s", delay: "1.8s", r: 5 },
+  { path: curvePath(loop.pos, hyde.pos, -16), dur: "15s", delay: "2.4s", r: 4 },
 ];
 
 export function ChicagoFleetMap() {
   return (
-    <div className="chicago-fleet-map" aria-hidden="true">
+    <div className="nyc-service-map" aria-hidden="true">
       <svg
         viewBox="80 0 320 600"
-        className="chicago-fleet-svg"
+        className="nyc-service-map-svg"
         role="img"
         aria-label="Chicago service map with Shield crews responding"
       >
@@ -37,23 +41,33 @@ export function ChicagoFleetMap() {
             </feMerge>
           </filter>
         </defs>
-        <path d={LAKE_PATH} className="chicago-map-lake" />
-        <path d={CITY_PATH} className="chicago-map-city" />
+        <path d={LAKE_PATH} className="nyc-map-borough nyc-map-borough-outer" />
+        <path d={CITY_PATH} className="nyc-map-borough" />
         {ROUTES.map((route, i) => (
-          <path key={`trail-${i}`} d={route.path} className="chicago-map-trail" fill="none" />
+          <path key={`trail-${i}`} d={route.path} className="nyc-map-trail" fill="none" />
         ))}
         {FLEET_HUBS.map((hub) => (
           <a key={hub.id} href={`/coverage/${hub.id}`}>
-            <circle cx={hub.pos[0]} cy={hub.pos[1]} r={7} className="chicago-map-hub-ring" />
-            <circle cx={hub.pos[0]} cy={hub.pos[1]} r={3.5} className="chicago-map-hub" />
+            <circle
+              cx={hub.pos[0]}
+              cy={hub.pos[1]}
+              r={hub.primary ? 10 : 7}
+              className="nyc-map-hub-ring"
+            />
+            <circle
+              cx={hub.pos[0]}
+              cy={hub.pos[1]}
+              r={hub.primary ? 5 : 3.5}
+              className="nyc-map-hub"
+            />
           </a>
         ))}
         {ROUTES.map((route, i) => (
           <g key={`car-${i}`} filter="url(#fleet-glow)">
-            <circle r={route.r} className="chicago-map-car">
+            <circle r={route.r} className="nyc-map-car">
               <animateMotion dur={route.dur} begin={route.delay} repeatCount="indefinite" path={route.path} />
             </circle>
-            <circle r={route.r * 2.4} className="chicago-map-car-pulse">
+            <circle r={route.r * 2.4} className="nyc-map-car-pulse">
               <animateMotion dur={route.dur} begin={route.delay} repeatCount="indefinite" path={route.path} />
               <animate
                 attributeName="opacity"

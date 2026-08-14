@@ -16,7 +16,7 @@ export async function generateMetadata({
   const place = placeBySlug(slug);
   if (!place) return { title: "Coverage" };
   return {
-    title: `${place.name} water damage`,
+    title: place.hub === "dispatch" ? "Center Dispatch" : `${place.name} water damage`,
     description: place.pitch,
   };
 }
