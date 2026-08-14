@@ -109,6 +109,7 @@ export function SiteFooter() {
           <Link href="/privacy">Privacy</Link>
           <Link href="/price-list">Price list</Link>
           <Link href="/terms">Terms</Link>
+          <Link href="/sitemap">Sitemap</Link>
         </div>
       </div>
     </footer>

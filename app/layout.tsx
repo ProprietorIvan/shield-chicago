@@ -33,9 +33,64 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": `${FIRM.siteUrl}/#org`,
+        name: "Shield Water Damage Restoration and Repairs",
+        legalName: "Felicita Group LLC",
+        alternateName: "Shield Chicago",
+        url: FIRM.siteUrl,
+        telephone: FIRM.phoneE164,
+        email: FIRM.email,
+        image: `${FIRM.siteUrl}/shield-water-damage-restoration-and-repairs-logo.png`,
+        priceRange: "$$",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "1200 W Carroll Ave",
+          addressLocality: "Chicago",
+          addressRegion: "IL",
+          postalCode: "60607",
+          addressCountry: "US",
+        },
+        areaServed: {
+          "@type": "City",
+          name: "Chicago",
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${FIRM.siteUrl}/#website`,
+        url: FIRM.siteUrl,
+        name: "Shield Water Damage Restoration and Repairs",
+        publisher: { "@id": `${FIRM.siteUrl}/#org` },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className={outfit.className}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SiteNav />
         {children}
         <SiteFooter />

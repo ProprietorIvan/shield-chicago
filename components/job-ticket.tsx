@@ -3,12 +3,22 @@
 import { FormSuccess } from "@/components/form-success";
 import { FIRM } from "@/lib/firm";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const compactField =
   "w-full px-3 py-2.5 rounded-[var(--radius)] border border-[var(--line)] focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent";
 const serviceField =
   "w-full px-4 py-3 rounded-[var(--radius)] border border-[var(--line)] focus:ring-2 focus:ring-[var(--accent)] focus:border-transparent";
+
+const emptyForm = {
+  name: "",
+  phone: "",
+  email: "",
+  address: "",
+  projectDetails: "",
+  businessType: "",
+  propertySize: "",
+};
 
 export function JobTicket({
   landingPage,
@@ -23,43 +33,55 @@ export function JobTicket({
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [customerType, setCustomerType] = useState<"homeowner" | "business" | null>(null);
+  const [formData, setFormData] = useState(emptyForm);
   const fieldClass = variant === "service" ? serviceField : compactField;
   const label = submitLabel ?? (variant === "service" ? "Submit Emergency Request" : "Get Emergency Help Now");
 
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const payload = {
-      name: String(data.get("name") ?? ""),
-      phone: String(data.get("phone") ?? ""),
-      email: String(data.get("email") ?? ""),
-      address: String(data.get("address") ?? ""),
-      projectDetails: String(data.get("story") ?? ""),
-      landingPage,
+    const submissionData = {
+      ...formData,
       customerType,
+      facilityType: formData.businessType || undefined,
+      projectSize: formData.propertySize || undefined,
+      landingPage,
     };
-    if (payload.phone.trim().length < 7 || payload.address.trim().length < 6) {
-      setError("Need a callback number and a street we can find.");
-      return;
-    }
+
     setBusy(true);
     setError("");
     try {
-      const response = await fetch("/api/ticket", {
+      const response = await fetch("/api/email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(submissionData),
       });
-      if (!response.ok) {
-        setError("Could not send. Call the dispatch line.");
-        setBusy(false);
+
+      if (response.ok) {
+        setSent(true);
+        setFormData(emptyForm);
+        setCustomerType(null);
         return;
       }
-      setSent(true);
-    } catch {
-      setError("Could not send. Call the dispatch line.");
+
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data?.error || "Failed to submit request");
+    } catch (caught) {
+      const message =
+        caught instanceof Error
+          ? caught.message
+          : "There was an error submitting your request. Please try again.";
+      console.error("Error submitting form:", caught);
+      setError(message);
+    } finally {
+      setBusy(false);
     }
-    setBusy(false);
   }
 
   if (sent) {
@@ -67,12 +89,13 @@ export function JobTicket({
   }
 
   return (
-    <form className={variant === "service" ? "space-y-6" : "space-y-4"} onSubmit={onSubmit} noValidate>
+    <form className={variant === "service" ? "space-y-6" : "space-y-4"} onSubmit={onSubmit}>
       {variant === "service" ? (
         <div className="grid grid-cols-2 gap-4 mb-8">
           <button
             type="button"
             onClick={() => setCustomerType("homeowner")}
+            aria-pressed={customerType === "homeowner"}
             className={`p-4 rounded-[var(--radius)] border-2 transition-all duration-300 ${
               customerType === "homeowner"
                 ? "border-[var(--accent)] bg-[var(--accent)]/5"
@@ -91,6 +114,7 @@ export function JobTicket({
           <button
             type="button"
             onClick={() => setCustomerType("business")}
+            aria-pressed={customerType === "business"}
             className={`p-4 rounded-[var(--radius)] border-2 transition-all duration-300 ${
               customerType === "business"
                 ? "border-[var(--accent)] bg-[var(--accent)]/5"
@@ -111,26 +135,85 @@ export function JobTicket({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <label className="block text-sm font-medium text-ink">
           Name *
-          <input name="name" className={`${fieldClass} mt-1`} />
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className={`${fieldClass} mt-1`}
+          />
         </label>
         <label className="block text-sm font-medium text-ink">
           Phone *
-          <input name="phone" type="tel" required className={`${fieldClass} mt-1`} />
+          <input
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className={`${fieldClass} mt-1`}
+          />
         </label>
       </div>
       <label className="block text-sm font-medium text-ink">
-        Email
-        <input name="email" type="email" className={`${fieldClass} mt-1`} />
+        Email *
+        <input
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className={`${fieldClass} mt-1`}
+        />
       </label>
       <label className="block text-sm font-medium text-ink">
         Address *
-        <input name="address" required className={`${fieldClass} mt-1`} />
+        <input
+          name="address"
+          value={formData.address}
+          onChange={handleChange}
+          required
+          className={`${fieldClass} mt-1`}
+        />
       </label>
+      {variant === "service" && customerType === "business" ? (
+        <div className="space-y-6">
+          <label className="block text-sm font-medium text-ink">
+            Business Type
+            <select
+              name="businessType"
+              value={formData.businessType}
+              onChange={handleChange}
+              className={`${fieldClass} mt-1`}
+            >
+              <option value="">Select business type</option>
+              <option value="retail">Retail</option>
+              <option value="office">Office</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="warehouse">Warehouse</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label className="block text-sm font-medium text-ink">
+            Property Size (sq ft) - Approximate
+            <input
+              name="propertySize"
+              type="number"
+              value={formData.propertySize}
+              onChange={handleChange}
+              className={`${fieldClass} mt-1`}
+            />
+          </label>
+        </div>
+      ) : null}
       <label className="block text-sm font-medium text-ink">
         What happened? *
         <textarea
-          name="story"
-          rows={3}
+          name="projectDetails"
+          value={formData.projectDetails}
+          onChange={handleChange}
+          required
+          rows={variant === "service" ? 4 : 3}
           placeholder="e.g. Burst pipe, basement flooded, roof leak..."
           className={`${fieldClass} mt-1`}
         />
