@@ -1,0 +1,54 @@
+import type { SVGProps } from "react";
+
+export function ShieldMark({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 80 96"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      <path d="M40 4L72 18V50C72 72 56 86 40 92C24 86 8 72 8 50V18L40 4Z" fill="#0B1F33" />
+      <path
+        d="M40 10L66 21.5V50C66 68 53.5 80.5 40 86C26.5 80.5 14 68 14 50V21.5L40 10Z"
+        stroke="#7FC4E8"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M18 58C24 54 32 56 40 60C48 64 56 62 62 58"
+        stroke="#7FC4E8"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18 66C25 62 33 64 40 68C47 72 55 70 62 66"
+        stroke="#B3DDF2"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M20 74C27 70 34 72 40 75C46 78 53 76 60 73"
+        stroke="#7FC4E8"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+      <polygon
+        fill="#E4002B"
+        points="28,26 29.6,30.4 34.2,30.4 30.5,33.1 31.9,37.4 28,34.8 24.1,37.4 25.5,33.1 21.8,30.4 26.4,30.4"
+      />
+      <polygon
+        fill="#E4002B"
+        points="52,26 53.6,30.4 58.2,30.4 54.5,33.1 55.9,37.4 52,34.8 48.1,37.4 49.5,33.1 45.8,30.4 50.4,30.4"
+      />
+      <polygon
+        fill="#E4002B"
+        points="28,42 29.6,46.4 34.2,46.4 30.5,49.1 31.9,53.4 28,50.8 24.1,53.4 25.5,49.1 21.8,46.4 26.4,46.4"
+      />
+      <polygon
+        fill="#E4002B"
+        points="52,42 53.6,46.4 58.2,46.4 54.5,49.1 55.9,53.4 52,50.8 48.1,53.4 49.5,49.1 45.8,46.4 50.4,46.4"
+      />
+    </svg>
+  );
+}
