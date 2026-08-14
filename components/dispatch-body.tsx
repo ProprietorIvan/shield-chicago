@@ -1,6 +1,7 @@
 "use client";
 
 import { FIRM } from "@/lib/firm";
+import { trackContactConversion } from "@/lib/track-conversion";
 import { Check, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 
@@ -12,6 +13,7 @@ export function DispatchCopyCards() {
     try {
       await navigator.clipboard.writeText(text);
       if (isPhone) {
+        trackContactConversion();
         setCopiedPhone(true);
         setTimeout(() => setCopiedPhone(false), 1500);
       } else {

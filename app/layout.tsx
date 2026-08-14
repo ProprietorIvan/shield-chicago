@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
+import { GoogleAdsTag } from "@/components/google-ads-tag";
+import { GoogleAdsTracker } from "@/components/google-ads-tracker";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { FIRM } from "@/lib/firm";
@@ -87,6 +89,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={outfit.className}>
       <body>
+        <GoogleAdsTag />
+        <GoogleAdsTracker />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

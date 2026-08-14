@@ -2,6 +2,7 @@
 
 import { FormSuccess } from "@/components/form-success";
 import { FIRM } from "@/lib/firm";
+import { trackContactConversion } from "@/lib/track-conversion";
 import Link from "next/link";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -64,6 +65,7 @@ export function JobTicket({
       });
 
       if (response.ok) {
+        trackContactConversion();
         setSent(true);
         setFormData(emptyForm);
         setCustomerType(null);
