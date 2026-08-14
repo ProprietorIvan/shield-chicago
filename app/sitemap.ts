@@ -1,17 +1,16 @@
 import type { MetadataRoute } from "next";
-import { FLOOD_EVENTS } from "@/lib/mock";
+import { ARTICLES } from "@/lib/advice";
+import { FIRM } from "@/lib/firm";
+import { PLACES } from "@/lib/territory";
+import { TRADES } from "@/lib/trades";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shield-chicago.vercel.app";
-  const staticRoutes = ["", "/about", "/sensors", "/dashboard", "/events", "/data", "/get-involved"];
+  const base = FIRM.siteUrl;
+  const staticPaths = ["", "/work", "/coverage", "/advice", "/questions", "/firm", "/dispatch", "/rates"];
   return [
-    ...staticRoutes.map((path) => ({
-      url: `${base}${path}`,
-      lastModified: new Date("2026-08-14"),
-    })),
-    ...FLOOD_EVENTS.map((event) => ({
-      url: `${base}/events/${event.slug}`,
-      lastModified: new Date(event.end),
-    })),
+    ...staticPaths.map((path) => ({ url: `${base}${path}` })),
+    ...TRADES.map((trade) => ({ url: `${base}/work/${trade.slug}` })),
+    ...PLACES.map((place) => ({ url: `${base}/coverage/${place.slug}` })),
+    ...ARTICLES.map((article) => ({ url: `${base}/advice/${article.slug}` })),
   ];
 }

@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
+import { FIRM } from "@/lib/firm";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shield-chicago.vercel.app";
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: `${FIRM.siteUrl}/sitemap.xml`,
   };
 }

@@ -1,50 +1,44 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+import { Fraunces, Manrope } from "next/font/google";
+import { Colophon } from "@/components/colophon";
+import { Masthead } from "@/components/masthead";
+import { FIRM } from "@/lib/firm";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://shield-chicago.vercel.app"),
+  metadataBase: new URL(FIRM.siteUrl),
   title: {
-    default: SITE_NAME,
-    template: `%s · ${SITE_NAME}`,
+    default: FIRM.legal,
+    template: `%s · ${FIRM.name}`,
   },
-  description: SITE_DESCRIPTION,
+  description: FIRM.description,
   openGraph: {
-    title: SITE_NAME,
-    description: SITE_TAGLINE,
-    images: [{ url: "/opengraph.png", width: 1376, height: 768, alt: SITE_NAME }],
+    title: FIRM.legal,
+    description: FIRM.tagline,
+    images: [{ url: "/og.png", alt: `${FIRM.name} water damage restoration` }],
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: SITE_NAME,
-    description: SITE_TAGLINE,
-    images: ["/opengraph.png"],
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${archivo.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-paper text-ink">
-        <SiteHeader />
+    <html lang="en" className={`${manrope.variable} ${fraunces.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-bone text-void">
+        <Masthead />
         <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <Colophon />
       </body>
     </html>
   );
