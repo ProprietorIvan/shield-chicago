@@ -7,10 +7,10 @@ import { Wordmark } from "@/components/wordmark";
 import { FIRM } from "@/lib/firm";
 
 const LINKS = [
+  { href: "/emergency", label: "Emergency" },
   { href: "/work", label: "The work" },
   { href: "/coverage", label: "Coverage" },
   { href: "/advice", label: "Advice" },
-  { href: "/questions", label: "Questions" },
   { href: "/firm", label: "The firm" },
   { href: "/dispatch", label: "Dispatch" },
 ];

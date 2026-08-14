@@ -28,11 +28,15 @@ export default function FirmPage() {
           the carrier. We do not fog perfume over wet board and call it a protocol.
         </p>
         <p>
-          {FIRM.hours}. {FIRM.response}. Write {FIRM.email} or call{" "}
+          Shop:{" "}
+          <a href={FIRM.addressMaps} className="text-copper" target="_blank" rel="noreferrer">
+            {FIRM.address}
+          </a>
+          . {FIRM.hours}. {FIRM.response}. Write {FIRM.email} or call{" "}
           <a href={FIRM.phoneTel} className="text-copper">
             {FIRM.phoneDisplay}
           </a>
-          .
+          . Domain: flood-911.com.
         </p>
       </div>
       <Link href="/dispatch" className="mt-10 inline-block rounded-full bg-void px-5 py-3 text-sm font-semibold text-bone">

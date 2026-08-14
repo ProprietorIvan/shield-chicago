@@ -13,6 +13,7 @@ export function Colophon() {
           <p className="mt-4 text-sm leading-6 text-bone/70">{FIRM.tagline}</p>
           <p className="mt-4 text-sm text-copper">{FIRM.phoneDisplay}</p>
           <p className="text-sm text-bone/70">{FIRM.email}</p>
+          <p className="mt-2 text-sm text-bone/70">{FIRM.address}</p>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copper">The work</p>

@@ -98,6 +98,21 @@ export const TRADES: Trade[] = [
       "Document the repair for the next insurance conversation",
     ],
   },
+  {
+    slug: "mold",
+    numeral: "07",
+    name: "Mold after a water loss",
+    blurb:
+      "When a Chicago basement sat wet, we do not fog and leave. We dry the source, cut what colonized, and close only on a clean reading.",
+    promise:
+      "Mold work is part of the water file, not a separate scare product. If the board is still wet, we do not paint over it.",
+    steps: [
+      "Confirm the water is actually gone",
+      "Remove colonized material to a clean line",
+      "Clean cavities that can be saved",
+      "Close the wall after the meter agrees",
+    ],
+  },
 ];
 
 export function tradeBySlug(slug: string) {

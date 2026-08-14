@@ -1,10 +1,10 @@
-import { DispatchForm } from "@/components/dispatch-form";
+import { JobTicket } from "@/components/job-ticket";
 import { FIRM } from "@/lib/firm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dispatch",
-  description: "Call Shield Chicago or send an address for emergency water damage restoration.",
+  description: "Call Shield Chicago at (464) 768-0164 or send an address for emergency water damage restoration.",
 };
 
 export default function DispatchPage() {
@@ -24,9 +24,13 @@ export default function DispatchPage() {
             {FIRM.email}
           </a>
         </p>
-        <p className="mt-6 text-xs text-quiet">{FIRM.phoneNote}</p>
+        <p className="mt-4 text-sm text-quiet">
+          <a href={FIRM.addressMaps} className="hover:text-copper" target="_blank" rel="noreferrer">
+            {FIRM.address}
+          </a>
+        </p>
       </div>
-      <DispatchForm />
+      <JobTicket landingPage="dispatch" />
     </section>
   );
 }

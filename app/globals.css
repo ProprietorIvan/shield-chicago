@@ -37,3 +37,190 @@ h3,
   font-family: var(--font-display), Georgia, serif;
   font-optical-sizing: auto;
 }
+
+.hero-stage {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 110px 4vw 72px;
+  text-align: center;
+  background: #161310;
+}
+
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 62% 58% at center, rgb(22 19 16 / 0.15) 0%, rgb(22 19 16 / 0.45) 100%),
+    linear-gradient(180deg, rgb(22 19 16 / 0.55) 0%, transparent 28%, transparent 62%, rgb(22 19 16 / 0.72) 100%);
+}
+
+.hero-poster,
+.hero-video {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-poster {
+  z-index: -3;
+}
+
+.hero-video {
+  z-index: -2;
+  filter: saturate(1.12) contrast(1.06) brightness(0.92);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-kicker {
+  margin: 0 0 16px;
+  color: #c46a3a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-stage h1 {
+  margin: 0;
+  color: #f3eee6;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 0.55);
+}
+
+.hero-stage h1 em {
+  color: #c46a3a;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.hero-lede {
+  margin: 16px 0 0;
+  max-width: 480px;
+  color: rgb(243 238 230 / 0.82);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.hero-actions {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.hero-text-link {
+  color: #f3eee6;
+  border-bottom: 1px solid rgb(243 238 230 / 0.75);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero-rise {
+  animation: hero-appear 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hero-appear {
+  from {
+    transform: translateY(16px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.chicago-fleet-map {
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.chicago-fleet-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+}
+
+.chicago-map-city {
+  fill: rgb(196 106 58 / 0.08);
+  stroke: rgb(196 106 58 / 0.35);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.chicago-map-lake {
+  fill: rgb(74 92 99 / 0.12);
+  stroke: none;
+}
+
+.chicago-map-trail {
+  stroke: rgb(196 106 58 / 0.18);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.chicago-map-hub {
+  fill: #c46a3a;
+}
+
+.chicago-map-hub-ring {
+  fill: none;
+  stroke: rgb(196 106 58 / 0.4);
+  stroke-width: 1.5;
+}
+
+.chicago-map-car {
+  fill: #c46a3a;
+}
+
+.chicago-map-car-pulse {
+  fill: none;
+  stroke: #c46a3a;
+  stroke-width: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise {
+    animation: none;
+  }
+
+  .chicago-map-car,
+  .chicago-map-car-pulse {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-stage {
+    min-height: 100svh;
+    padding: 96px 20px 48px;
+  }
+
+  .hero-stage h1 {
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+  }
+}
