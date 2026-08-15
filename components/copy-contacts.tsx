@@ -1,7 +1,7 @@
 "use client";
 
 import { FIRM } from "@/lib/firm";
-import { trackContactConversion } from "@/lib/track-conversion";
+import { trackContactConversion, trackEmailClick, trackPhoneClick } from "@/lib/track-conversion";
 import { Check, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 
@@ -13,10 +13,12 @@ export function CopyContacts() {
     try {
       await navigator.clipboard.writeText(text);
       if (isPhone) {
+        trackPhoneClick();
         trackContactConversion();
         setCopiedPhone(true);
         setTimeout(() => setCopiedPhone(false), 1500);
       } else {
+        trackEmailClick();
         setCopiedEmail(true);
         setTimeout(() => setCopiedEmail(false), 1500);
       }

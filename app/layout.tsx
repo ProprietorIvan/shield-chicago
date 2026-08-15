@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Outfit } from "next/font/google";
 import { GoogleAdsTag } from "@/components/google-ads-tag";
 import { GoogleAdsTracker } from "@/components/google-ads-tracker";
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteNav />
         {children}
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

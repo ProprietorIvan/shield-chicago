@@ -1,9 +1,9 @@
 "use client";
 
-import { trackContactConversion } from "@/lib/track-conversion";
+import { trackContactConversion, trackEmailClick, trackPhoneClick } from "@/lib/track-conversion";
 import { useEffect } from "react";
 
-/** Fires the Google Ads Contact conversion on every tel: click, then dials. */
+/** Fires Contact conversion on tel: clicks, and Vercel events on tel:/mailto:. */
 export function GoogleAdsTracker() {
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
@@ -12,14 +12,22 @@ export function GoogleAdsTracker() {
 
       const target = event.target;
       if (!(target instanceof Element)) return;
-      const link = target.closest("a[href^='tel:']");
-      if (!(link instanceof HTMLAnchorElement)) return;
 
-      event.preventDefault();
-      const href = link.href;
-      trackContactConversion(() => {
-        window.location.href = href;
-      });
+      const telLink = target.closest("a[href^='tel:']");
+      if (telLink instanceof HTMLAnchorElement) {
+        event.preventDefault();
+        const href = telLink.href;
+        trackPhoneClick();
+        trackContactConversion(() => {
+          window.location.href = href;
+        });
+        return;
+      }
+
+      const mailLink = target.closest("a[href^='mailto:']");
+      if (mailLink instanceof HTMLAnchorElement) {
+        trackEmailClick();
+      }
     };
 
     document.addEventListener("click", onClick, true);
