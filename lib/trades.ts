@@ -411,6 +411,341 @@ export const TRADES: Trade[] = [
       },
     ],
   },
+  {
+    slug: "sewage-backup",
+    numeral: "08",
+    name: "Sewage backup cleanup",
+    blurb:
+      "Floor drains, toilets, and main-line backups in Chicago basements. Contaminated water out, affected materials removed, every surface sanitized.",
+    promise:
+      "Sewage is a health problem before it is a flooring problem. We contain it, pull it, and sanitize to a documented standard before anything goes back.",
+    steps: [
+      "Keep people and pets out, then contain the area",
+      "Extract sewage and remove porous materials it touched",
+      "Clean and apply antimicrobial to every affected surface",
+      "Dry with meters and document it all for the claim",
+    ],
+    image: "/photos/homepage/shield-emergency-water-damage-extraction.jpg",
+    alt: "Sewage backup cleanup in a Chicago basement",
+    pill: "Available Now - 60 Minute Response",
+    heroLead: "Emergency",
+    heroAccent: "Sewage Backup Cleanup",
+    cta: "Call Now - Available 24/7",
+    whyTitle: "Contained, sanitized, documented",
+    whyImage: "/photos/homepage/structural-drying-air-movers-water-damage.jpg",
+    whyPoints: [
+      "Crews in full protective equipment",
+      "Containment keeps the rest of the house clean",
+      "Contaminated drywall, pad, and insulation removed",
+      "Photo and moisture file for your insurance",
+    ],
+    offerings: [
+      {
+        title: "Floor Drain Backups",
+        points: [
+          "Storm surcharge and clogged laterals",
+          "Basement slab and wall cleanup",
+          "Carpet and pad removal",
+          "Antimicrobial treatment",
+        ],
+      },
+      {
+        title: "Toilet & Fixture Overflows",
+        points: [
+          "Bathroom and below-floor cleanup",
+          "Ceiling checks on the floor below",
+          "Subfloor drying",
+          "Odor control",
+        ],
+      },
+      {
+        title: "Main Line Backups",
+        points: [
+          "Two-flats and multi-unit buildings",
+          "Coordination with your plumber",
+          "Unit-by-unit documentation",
+          "Common area cleanup",
+        ],
+      },
+      {
+        title: "After the Cleanup",
+        points: [
+          "Structural drying to a metered dry",
+          "Drywall, trim, and flooring rebuilt",
+          "Backflow and waterproofing advice",
+          "Warranty on restoration work",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "burst-pipe",
+    numeral: "09",
+    name: "Burst pipe water damage",
+    blurb:
+      "Frozen pipes, failed supply lines, water heaters, and washer hoses. We stop the spread, find where the water went, and dry it before it turns into mold.",
+    promise:
+      "Water from a burst pipe travels inside walls and under floors. We follow it with meters and thermal imaging, not guesses, and dry what we find.",
+    steps: [
+      "Confirm the water is shut off and the area is safe",
+      "Extract standing water from floors and cavities",
+      "Map hidden moisture in walls, ceilings, and subfloor",
+      "Dry, document, and rebuild what could not be saved",
+    ],
+    image: "/photos/homepage/structural-drying-air-movers-water-damage.jpg",
+    alt: "Drying equipment after a burst pipe in a Chicago home",
+    pill: "Available Now - 60 Minute Response",
+    heroLead: "Burst Pipe",
+    heroAccent: "Water Damage Repair",
+    cta: "Call Now - Available 24/7",
+    whyTitle: "Follow the water, not a guess",
+    whyImage: "/photos/homepage/commercial-dehumidifiers-water-damage-drying.jpg",
+    whyPoints: [
+      "Thermal imaging finds water behind walls",
+      "Commercial extraction and drying equipment",
+      "Moisture map for your insurance adjuster",
+      "Walls, floors, and cabinets rebuilt after drying",
+    ],
+    offerings: [
+      {
+        title: "Frozen Pipe Bursts",
+        points: [
+          "Exterior walls and crawlspaces",
+          "Winter vacancies and vacant units",
+          "Ceiling and wall cavity drying",
+          "Coordination with your plumber",
+        ],
+      },
+      {
+        title: "Supply Line & Appliance Leaks",
+        points: [
+          "Water heaters and washer hoses",
+          "Dishwasher and fridge lines",
+          "Under-cabinet and subfloor drying",
+          "Cabinet removal only when needed",
+        ],
+      },
+      {
+        title: "Hidden Moisture",
+        points: [
+          "Thermal imaging",
+          "Pin and pinless meters",
+          "Controlled openings, not demolition",
+          "Daily readings until dry",
+        ],
+      },
+      {
+        title: "Rebuild",
+        points: [
+          "Drywall, plaster, and paint",
+          "Flooring and trim",
+          "One company from extraction to finish",
+          "Warranty on restoration work",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "basement-flooding",
+    numeral: "10",
+    name: "Basement flooding",
+    blurb:
+      "Cloudbursts, failed sump pumps, and seepage through old foundations. Chicago basements are our most common call, finished or not.",
+    promise:
+      "A flooded basement is pumped, dried, and rebuilt in order. We do not close walls on a wet slab, and we tell you why it flooded.",
+    steps: [
+      "Pump out standing water with commercial equipment",
+      "Remove wet carpet, pad, and drywall below the waterline",
+      "Dry the slab, walls, and framing to a metered reading",
+      "Rebuild and advise on keeping the next storm out",
+    ],
+    image: "/photos/homepage/shield-emergency-water-damage-extraction.jpg",
+    alt: "Pumping water out of a flooded Chicago basement",
+    pill: "Available Now - 60 Minute Response",
+    heroLead: "Flooded",
+    heroAccent: "Basement Cleanup & Repair",
+    cta: "Call Now - Available 24/7",
+    whyTitle: "Why Chicago basements call Shield",
+    whyImage: "/photos/homepage/structural-drying-air-movers-water-damage.jpg",
+    whyPoints: [
+      "Commercial pumps, not shop-vacs",
+      "Slab and wall drying measured daily",
+      "Finished basements rebuilt after drying",
+      "Waterproofing advice once it is dry",
+    ],
+    offerings: [
+      {
+        title: "Storm & Cloudburst Flooding",
+        points: [
+          "Overland water and window wells",
+          "Floor drain surcharge",
+          "Fast pump-out",
+          "Contents moved and protected",
+        ],
+      },
+      {
+        title: "Sump Pump Failures",
+        points: [
+          "Power outage and float failures",
+          "Pit overflow cleanup",
+          "Slab and wall drying",
+          "Pump replacement guidance",
+        ],
+      },
+      {
+        title: "Finished Basements",
+        points: [
+          "Carpet, pad, and LVP",
+          "Drywall cut above the waterline",
+          "Insulation removal",
+          "Full rebuild after drying",
+        ],
+      },
+      {
+        title: "Keep It Dry",
+        points: [
+          "Source named correctly",
+          "Backflow and drainage options",
+          "Interior waterproofing where it failed",
+          "Insurance documentation",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ceiling-leak",
+    numeral: "11",
+    name: "Ceiling leaks and water stains",
+    blurb:
+      "Water through the ceiling from the unit above, a bathroom, or the roof. We protect the room, find the source, and dry the ceiling before it sags.",
+    promise:
+      "A wet ceiling can come down. We make it safe first, then dry, repair, and paint so you cannot tell where the leak was.",
+    steps: [
+      "Protect furniture and check the ceiling is safe",
+      "Trace the source above, from a unit, bath, or roof",
+      "Dry the ceiling cavity with meters and thermal imaging",
+      "Patch, skim, and paint to match",
+    ],
+    image: "/photos/homepage/drywall-and-paint-repair-after-water-damage.jpg",
+    alt: "Ceiling water damage repair in a Chicago home",
+    pill: "Available Now - 60 Minute Response",
+    heroLead: "Ceiling Leak",
+    heroAccent: "Water Damage Repair",
+    cta: "Call Now - Available 24/7",
+    whyTitle: "Safe first, then invisible",
+    whyImage: "/photos/homepage/structural-drying-air-movers-water-damage.jpg",
+    whyPoints: [
+      "Sagging ceilings made safe first",
+      "Source traced before we repair",
+      "Cause and moisture report for condo boards and insurers",
+      "Patch, skim, and paint to match",
+    ],
+    offerings: [
+      {
+        title: "Leaks From Above",
+        points: [
+          "Condo and apartment units",
+          "Upstairs bathrooms and kitchens",
+          "Cause report for the building",
+          "Coordination with management",
+        ],
+      },
+      {
+        title: "Roof & Ice Dam Leaks",
+        points: [
+          "Top-floor ceilings",
+          "Attic insulation checks",
+          "Temporary protection",
+          "Drying before repair",
+        ],
+      },
+      {
+        title: "Plaster & Drywall",
+        points: [
+          "Plaster ceilings in older homes",
+          "Drywall cut and replaced",
+          "Skim coat and texture match",
+          "Stain-blocking primer and paint",
+        ],
+      },
+      {
+        title: "Documentation",
+        points: [
+          "Photos before and after",
+          "Moisture readings",
+          "Clear written scope",
+          "Warranty on restoration work",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "commercial",
+    numeral: "12",
+    name: "Commercial water damage",
+    blurb:
+      "Offices, restaurants, retail, and multi-unit buildings. We work around your hours and give property managers one point of contact.",
+    promise:
+      "A flooded business loses money every hour it is closed. We extract fast, set drying around your schedule, and keep the paperwork clean.",
+    steps: [
+      "Crew on site with commercial pumps and extractors",
+      "Contain affected areas so the rest can stay open",
+      "Dry on a plan built around your hours",
+      "Daily moisture logs and photo reports for managers",
+    ],
+    image: "/photos/homepage/commercial-dehumidifiers-water-damage-drying.jpg",
+    alt: "Commercial dehumidifiers drying a Chicago office",
+    pill: "24/7 Commercial Response",
+    heroLead: "Commercial",
+    heroAccent: "Water Damage Restoration",
+    cta: "Call Now - Available 24/7",
+    whyTitle: "Built for property managers",
+    whyImage: "/photos/homepage/structural-drying-air-movers-water-damage.jpg",
+    whyPoints: [
+      "One point of contact for the whole job",
+      "Drying planned around business hours",
+      "Daily moisture logs and photo reports",
+      "Loop high-rises to neighborhood storefronts",
+    ],
+    offerings: [
+      {
+        title: "Offices & High-Rises",
+        points: [
+          "Riser and sprinkler leaks",
+          "Floor-by-floor containment",
+          "After-hours work",
+          "Tenant communication support",
+        ],
+      },
+      {
+        title: "Restaurants & Retail",
+        points: [
+          "Kitchen and dining room floods",
+          "Walk-in and equipment leaks",
+          "Fast reopen planning",
+          "Sanitizing where required",
+        ],
+      },
+      {
+        title: "Multi-Unit Buildings",
+        points: [
+          "Two-flats to large buildings",
+          "Unit-by-unit documentation",
+          "Common area cleanup",
+          "Coordination with management",
+        ],
+      },
+      {
+        title: "Reporting",
+        points: [
+          "Daily moisture logs",
+          "Photo reports",
+          "Clear written scope",
+          "Insurance-ready documentation",
+        ],
+      },
+    ],
+  },
 ];
 
 export function tradeBySlug(slug: string) {

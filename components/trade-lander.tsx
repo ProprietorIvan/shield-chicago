@@ -62,6 +62,36 @@ const FEATURES: Record<string, { icon: LucideIcon; title: string; description: s
     { icon: Clock, title: "Part of the Water File", description: "Mold work is restoration, not a separate scare product" },
     { icon: Gauge, title: "Metered Close-Up", description: "Walls close only after the reading agrees" },
   ],
+  "sewage-backup": [
+    { icon: Shield, title: "Full Containment", description: "The rest of the house stays clean while we work" },
+    { icon: Droplets, title: "Sewage Extraction", description: "Contaminated water and materials removed safely" },
+    { icon: Sparkles, title: "Sanitized", description: "Antimicrobial treatment on every affected surface" },
+    { icon: Clock, title: "60-Minute Response", description: "A person answers 24/7 and a crew rolls" },
+  ],
+  "burst-pipe": [
+    { icon: Search, title: "Thermal Imaging", description: "Finds water hiding behind walls and under floors" },
+    { icon: Droplets, title: "Fast Extraction", description: "Standing water out before it spreads further" },
+    { icon: Fan, title: "Structural Drying", description: "Air movers and dehumidifiers sized to the loss" },
+    { icon: Clock, title: "60-Minute Response", description: "Crews staged to reach Chicago neighborhoods fast" },
+  ],
+  "basement-flooding": [
+    { icon: Droplets, title: "Commercial Pumps", description: "Pump-out that keeps going until the floor is clear" },
+    { icon: Gauge, title: "Slab Drying", description: "Concrete and walls metered daily until dry" },
+    { icon: Hammer, title: "Basement Rebuild", description: "Drywall, flooring, and trim put back after drying" },
+    { icon: Layers, title: "Keep It Dry", description: "Honest advice on why it flooded and what fixes it" },
+  ],
+  "ceiling-leak": [
+    { icon: Shield, title: "Made Safe First", description: "Sagging, wet ceilings checked before anything else" },
+    { icon: Search, title: "Source Traced", description: "Unit above, bathroom, or roof, named correctly" },
+    { icon: Fan, title: "Cavity Drying", description: "Ceiling dried in place wherever it can be" },
+    { icon: Paintbrush, title: "Invisible Repair", description: "Patch, skim, and paint matched to the room" },
+  ],
+  commercial: [
+    { icon: Clock, title: "Around Your Hours", description: "Drying planned so you can stay open" },
+    { icon: Shield, title: "Containment", description: "Affected areas sealed off from the rest of the floor" },
+    { icon: Gauge, title: "Daily Logs", description: "Moisture readings and photos for managers and insurers" },
+    { icon: Wrench, title: "One Contact", description: "A single point of contact from extraction to rebuild" },
+  ],
 };
 
 export function TradeLander({ trade }: { trade: Trade }) {

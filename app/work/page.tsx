@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Water damage restoration services",
   description:
-    "Shield Chicago restoration trades: pump-out, structural dry-out, floors, walls, wet rooms, waterproofing, and mold after a water loss.",
+    "Shield Chicago restoration services: pump-out, structural dry-out, basement flooding, sewage backups, burst pipes, ceiling leaks, commercial water damage, floors, walls, waterproofing, and mold.",
 };
 
 export default function WorkIndex() {

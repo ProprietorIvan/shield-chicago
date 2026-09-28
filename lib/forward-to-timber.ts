@@ -1,3 +1,6 @@
+import type { AdClick } from "@/lib/ad-click";
+import { TRADES } from "@/lib/trades";
+
 /** Server-side only. Forwards lead to Timber webhook. */
 export async function forwardToTimber(payload: {
   name: string;
@@ -9,6 +12,7 @@ export async function forwardToTimber(payload: {
   serviceType?: string;
   formPage: string;
   leadSource: string;
+  adClick?: AdClick | null;
 }) {
   try {
     const body = {
@@ -24,6 +28,7 @@ export async function forwardToTimber(payload: {
       formSource: "flood-911.com",
       formPage: payload.formPage,
       leadSource: payload.leadSource,
+      ...(payload.adClick ? { adClick: payload.adClick } : {}),
     };
     const res = await fetch(
       "https://gettimber.ai/api/webhooks/inbound/wh_k3x8gzpd9?companyId=CM0001",
@@ -52,8 +57,7 @@ export function formPageFromLanding(landingPage?: string) {
   if (landingPage.startsWith("advice-")) {
     return `/advice/${landingPage.slice("advice-".length)}`;
   }
-  const trades = ["pump-out", "dry-out", "floors", "walls", "wet-rooms", "keep-dry", "mold"];
-  if (trades.includes(landingPage)) {
+  if (TRADES.some((trade) => trade.slug === landingPage)) {
     return `/work/${landingPage}`;
   }
   return `/${landingPage}`;

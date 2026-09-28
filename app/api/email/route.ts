@@ -1,5 +1,6 @@
 import { after, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { adClickFooter, readAdClick } from "@/lib/ad-click";
 import { formPageFromLanding, forwardToTimber } from "@/lib/forward-to-timber";
 import { emailSubject, generateLeadEmail } from "@/lib/lead-email";
 
@@ -61,6 +62,8 @@ export async function POST(request: Request) {
     },
   });
 
+  const adClick = readAdClick(request);
+
   try {
     await transporter.sendMail({
       from: smtpFrom,
@@ -76,7 +79,7 @@ export async function POST(request: Request) {
         projectSize: projectSize || undefined,
         customerType: customerType || undefined,
         landingPage: landingPage || undefined,
-      }),
+      }) + adClickFooter(adClick),
     });
 
     after(() =>
@@ -89,6 +92,7 @@ export async function POST(request: Request) {
         serviceType: facilityType || (landingPage ? `${landingPage} services` : "General"),
         formPage: formPageFromLanding(landingPage || undefined),
         leadSource: "Shield Chicago Website Form",
+        adClick,
       }),
     );
 

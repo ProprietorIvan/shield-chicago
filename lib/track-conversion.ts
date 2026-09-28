@@ -1,5 +1,5 @@
 import { track } from "@vercel/analytics";
-import { GOOGLE_ADS_CONTACT_SEND_TO } from "@/lib/ads";
+import { GOOGLE_ADS_CONTACT_SEND_TO, GOOGLE_ADS_LEAD_FORM_SEND_TO } from "@/lib/ads";
 import { FIRM } from "@/lib/firm";
 
 declare global {
@@ -77,4 +77,9 @@ export function trackGoogleAdsConversion(sendTo: string | undefined, callback?: 
 
 export function trackContactConversion(callback?: () => void) {
   trackGoogleAdsConversion(GOOGLE_ADS_CONTACT_SEND_TO, callback);
+}
+
+/** Call only after /api/email confirms the lead was delivered. */
+export function trackLeadFormConversion() {
+  trackGoogleAdsConversion(GOOGLE_ADS_LEAD_FORM_SEND_TO);
 }
